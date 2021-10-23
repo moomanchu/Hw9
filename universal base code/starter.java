@@ -10,40 +10,39 @@ public class starter implements InputControl, InputKeyControl {
 		}
 		System.out.println();
 	}
+	public static void fill(int[] ar){
+		for(int n=0;n<ar.length;n++){
+			ar[n] = Canvas.rand(10);
+		}
+	}
 	public static void main(String args[]) {
 		// please leave following line alone, necessary for keyboard/mouse input
 		KeyController kC = new KeyController(Canvas.getInstance(),new starter());
 		MouseController mC = new MouseController(Canvas.getInstance(),new starter());
+
+		int[] datar = new int[7];
+		fill(datar);
+		printar(datar);
 		
-		int[] da = new int[7];
-		//int max = 0;
-		for(int n=0; n<da.length; n++){
-			da[n] = Canvas.rand(10);
-			System.out.print(da[n]+" ");
-		}
-		System.out.println();
-		
-		int[] ta = new int[10];
-		printar(ta);
-		
-		int count;
-		for(int a=0;a<ta.length;a++){//constant on each number
-			for(int b=0;b<da.length;b++){//scans array for same number //checks how many times that number appears
-				if(a == da[b]){
-					ta[a]++;
+		int[] talar = new int[10];
+		for(int a=0;a<talar.length;a++){
+			for(int b=0;b<datar.length;b++){
+				if(a == datar[b]){
+					talar[a]++;
 				}
 			}
 		}
-		printar(ta);
+		printar(talar);
 		
-		
-		//what to do:
-		//data array: 2 5 8 7 4 3 2
-		//tally array: 002110110
-		//first data value is 2, means that the index of tally array(ta) is where the number is going. 
-		//then, in that index, the number of occurances the data value happens is the number of the tally array
-		//ta[2] = 2, ta[2] bc 2 is the first data value
-		// = 2 because 2 appears twice in data array
+		/* 
+		- example
+		- a traverses the tally array
+		- a = 2
+		- while a is on 2, b traverses data array 
+		- while going through the data array, if the number 2 appears 
+		the value of the index 2 of the tally array goes up by one
+		- if 2 appears 3 times, 3 is added to the 0 value of the index(3) of the tally array
+		*/
 	}
 
 	public void onMouseClick(double x, double y) {
